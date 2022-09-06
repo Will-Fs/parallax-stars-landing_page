@@ -1,0 +1,78 @@
+* {
+
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-bg-color: rgb(35, 33, 41);
+}
+
+h1 {
+    font-weight: 300;
+}
+
+.content-container, .navbar-container {
+    background-color: var(--main-bg-color);
+}
+
+.content-container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name-title {
+    text-align: center;
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.navbar-container {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar-button-border {
+    padding: 1px;
+    background-image: linear-gradient(180deg, var(--button-border-color1), var(--button-border-color2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-button {
+    padding: 20px 30px 20px 30px;
+    
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navbar-button:hover {
+    background: none;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 100}
+}
+
