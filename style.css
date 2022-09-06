@@ -7,7 +7,7 @@
 }
 
 :root {
-    --main-bg-color: rgb(35, 33, 41);
+    --main-bg-color: rgb(24, 22, 28);
 }
 
 h1 {
@@ -32,6 +32,8 @@ h1 {
     font-size: 50px;
     opacity: 0;
     animation: fadeIn 1s forwards;
+    background-color: rgba(var(--main-bg-color, 0.8));
+    backdrop-filter: blur(2px);
 }
 
 .navbar-container {
@@ -57,6 +59,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
 }
 
 .navbar-button {
@@ -69,6 +72,11 @@ h1 {
 
 .navbar-button:hover {
     background: none;
+}
+
+.star {
+    border-radius: 50%;
+    background: white;
 }
 
 @keyframes fadeIn {
