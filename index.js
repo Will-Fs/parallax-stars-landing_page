@@ -2,7 +2,7 @@ const root = document.documentElement;
 const buttonBorderColor1Hue = 250;
 const buttonBorderColor2Hue = 360;
 const maxHueShift = 30;
-const maxStarSize = 2;
+const maxStarSize = Math.min(window.innerWidth, window.innerHeight)/300;
 const maxStarMove = 30;
 const starBorder = maxStarSize;
 var stars = [];
@@ -24,7 +24,7 @@ const createStars = (numStars) => {
 
         newStar.className = "star";
         newStar.style = `position: absolute; left: ${xPos}px; top: ${yPos}px; width: ${size}px; height: ${size}px;\
-        box-shadow: 0 0 ${size}px ${size}px white`;
+        box-shadow: 0 0 ${size/2}px ${size}px white`;
         starsContainer.appendChild(newStar);
         stars.push({
             startPos: {x: xPos, y: yPos},
@@ -35,7 +35,7 @@ const createStars = (numStars) => {
     }
 }
 
-window.onmousemove = (e) => {
+const handleMouseMove = e => {
     const buttons = document.querySelectorAll(".navbar-button-border");
     const angle = 60 + 360 * 2 * (0.5 - e.clientY / window.innerHeight);
     const hueShift = maxHueShift * (0.5 - e.clientX / window.innerWidth);
@@ -57,6 +57,8 @@ window.onmousemove = (e) => {
     })
 }
 
+window.onmousemove = handleMouseMove;
+
 window.onload = () => {
     root.style.setProperty("--button-border-color1", `hsl(${buttonBorderColor1Hue}deg, 75%, 60%)`);
     root.style.setProperty("--button-border-color2", `hsl(${buttonBorderColor2Hue}deg, 75%, 60%)`);
@@ -70,4 +72,5 @@ window.onload = () => {
         child.style.animation = `fadeIn 1s ${i}s forwards`
         i += 0.5;
     })
+    handleMouseMove();
 }
