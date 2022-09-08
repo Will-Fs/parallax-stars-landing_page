@@ -1,3 +1,6 @@
+:root {
+    --main-bg-color: rgb(24, 22, 28);
+}
 * {
 
     font-family: 'Roboto', sans-serif;
@@ -6,15 +9,17 @@
     padding: 0;
 }
 
-:root {
-    --main-bg-color: rgb(24, 22, 28);
+body {
+   
+    background-color: var(--main-bg-color);
 }
+
 
 h1 {
     font-weight: 300;
 }
 
-.content-container, .navbar-container {
+.navbar-container {
     background-color: var(--main-bg-color);
 }
 
@@ -79,6 +84,16 @@ h1 {
 .star {
     border-radius: 50%;
     background: white;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100vw;
+    height: 80vh;
+    filter: blur(1px);
 }
 
 @keyframes fadeIn {
