@@ -1,6 +1,8 @@
 :root {
     --main-bg-color: rgb(24, 22, 28);
+    --app-height: 50%;
 }
+
 * {
 
     font-family: 'Roboto', sans-serif;
@@ -10,10 +12,10 @@
 }
 
 body {
-   
     background-color: var(--main-bg-color);
+    height: var(--app-height);
+    overflow-x: hidden;
 }
-
 
 h1 {
     font-weight: 300;
@@ -24,7 +26,7 @@ h1 {
 }
 
 .content-container {
-    height: 80vh;
+    height: 80%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -44,7 +46,7 @@ h1 {
 }
 
 .navbar-container {
-    height: 20vh;
+    height: 20%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -62,16 +64,22 @@ h1 {
 
 .navbar-button-border {
     padding: 1px;
-    background-image: linear-gradient(180deg, var(--button-border-color1), var(--button-border-color2));
+    background-image: linear-gradient(0deg, var(--button-border-color1), var(--button-border-color2));
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
 }
 
+.navbar-button-border:hover {
+    --button-bg-angle: 180deg;
+}
+
 .navbar-button {
-    padding: 20px 30px 20px 30px;
-    
+    padding: 20px 0 20px 0;
+    width: 10vw;
+    min-width: 100px;
+    text-align: center;
     background-color: var(--main-bg-color);
     cursor: pointer;
     transition: 0.2s;
@@ -92,12 +100,21 @@ h1 {
     left: 0;
     margin: 0;
     width: 100vw;
-    height: 80vh;
+    height: 80%;
     filter: blur(1px);
+    z-index: -1000;
+}
+
+#view-on-desktop {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    font-size: 8px;
 }
 
 @keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 100}
 }
-

@@ -13,8 +13,6 @@ const nameTitle = document.querySelector(".name-title");
 const nameTitleMove = 130;
 var stars = [];
 
-var lastMousePos = {x: 0, y: 0}
-
 const drawStar =(x, y, size) => {
     ctx.fillStyle = "white";
     ctx.beginPath();
@@ -53,7 +51,15 @@ const createStars = (numStars) => {
     }
 }
 
+const resetStarPos = () => {
+    clearCanvas();
+    drawStars({x: 0, y: 0});
+    nameTitle.style = `transform: translate(0)`;
+}
+
 const handleMouseMove = e => {
+    if (isOnMobileOrTablet())
+        return;
     const buttons = document.querySelectorAll(".navbar-button-border");
     const angle = 60 + 360 * 2 * (0.5 - e.clientY / window.innerHeight);
     const hueShift = maxHueShift * (0.5 - e.clientX / window.innerWidth);
@@ -74,34 +80,13 @@ const handleMouseMove = e => {
     }
 }
 
-const handleDeviceOrientation = (frontToBack, leftToRight, rotateDegrees) => {
-    alert({frontToBack: frontToBack, leftToRight: leftToRight, rotateDegrees: rotateDegrees});
-  };
-
-window.onmousemove = handleMouseMove;
-
-if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", (event) => {
-      const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-      const leftToRight = event.gamma; // gamma: left to right
-      const frontToBack = event.beta; // beta: front back motion
- 
-      handleDeviceOrientation(frontToBack, leftToRight, rotateDegrees);
-    }, true);
- }
- 
- 
-
 window.onload = () => {
     root.style.setProperty("--button-border-color1", `hsl(${buttonBorderColor1Hue}deg, 75%, 60%)`);
     root.style.setProperty("--button-border-color2", `hsl(${buttonBorderColor2Hue}deg, 75%, 60%)`);
 
     clearCanvas();
     createStars(200);
-    
-
     const navbarChildren = Array.from(document.querySelector(".navbar").children);
-    console.log(navbarChildren);
     let i = 0.5;
     navbarChildren.forEach(child => {
         child.style.animation = `fadeIn 1s ${i}s forwards`
@@ -109,3 +94,5 @@ window.onload = () => {
     })
     // handleMouseMove({clientY: 0, clientX: 0});
 }
+
+window.onmousemove = handleMouseMove
